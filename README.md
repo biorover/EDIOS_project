@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Summary description of the project objectives
 
-You can use the [editor on GitHub](https://github.com/biorover/EDIOS_project/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+The evolution of novel cell types, developmental programs, and connective properties in the nervous system allows for behavioral innovation and unique mental capabilities across the metazoan tree of life, including those observed in humans. Nonetheless, we still know essentially nothing about the changes in the genetic code which lead to these evolutionary novelties. The insect olfactory system is an excellent model for studying these changes because of the massive diversity in cellular and super-cellular makeup, rapid evolution of these structures, and clear phenotypic relevance. In the insect olfactory system, specific populations of sensory cells (olfactory sensory neurons or OSNs) express receptors which respond to ecologically relevant odorants. New cell populations can evolve to increase the olfactory resolution towards specific chemical classes or confer novel odorant sensitivity. These cells must also form new neural connections and pathways within the brain to allow this novel sensory information to be processed. If we can understand the specific genetic changes leading to new populations and giving them their novel connective properties, we will be able to understand the evolution of behavioral novelty from the genomic through the cellular and neuroanatomical levels.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+In order to understand the evolutionary development of the insect olfactory system, I set out to examine gene expression in single cells throughout the course of olfactory system development, examine the co-evolution of gene expression and OSN population diversity in ants, and validate candidate genes for function in OSN development and identity using functional genetics in vinegar flies. 
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Description of the work performed since the beginning of the project
+Throughout 2018 I worked on two main projects: 1) development of a protocol for single cell isolation and sequencing from silkmoth pupae antennae in order to examine genetic correlates of OSN developmental diversification and wiring, and 2) development of a computational tool for chemosensory gene prediction in ant genomes in order to efficiently annotate these genes in hundreds of genomes for comparative evolutionary analyses. In early 2019, another research team successfully isolated and sequenced single cells from Drosophila antennae, publishing data and findings that rendered ongoing attempts to sequence single cells from silkmoth antennae redundant. This project was therefore abandoned. Consequently, I widened the scope of my work on ant genome annotation, and developed protocols for sequencing full-length transcripts from ants using cDNA amplification with cap-dependent second strand priming as well as Nanopore long read sequencing.
 
-```markdown
-Syntax highlighted code block
+## Description of the main results achieved so far
+In order to accurately identify chemosensory genes in ant genomes, I developed the HAP.py-ABCENTH pipeline and prediction program (https://github.com/biorover/HAPpy-ABCENTH). This program consists of two components: HAP.py (Homology Annotation Pipeline) and ABCENTH (Annotation Based on Conserved Exons Noticed Through Homology). HAP.py is a wrapper for a variety of homology based gene finding tools. In the context of annotating ant chemosensory genes, HAP.py is used to cluster a set of reference genes into closely related groups, each of which has completely conserved exon number and intron phases in most Hymenoptera chemosensory receptor gene families (ORs and GRs). HAP.py then uses the HMMER suite to build hidden markov model (HMM) profiles for each exon for each cluster and search them against translated ORFs from a target genome. From here, exon structure and HMMER homology search hits for each gene cluster are fed into ABCENTH, which tries to extend (or sometimes trim) each exon candidate to valid splice motifs that are the most consistent with the exon’s putative size and splicing phase. ABCENTH then connects all valid exons arranged in the proper order. ABCENTH will also find exons missed during the homology search by extracting ORFs between splice motifs with the proper phase and roughly the proper size and comparing these to the HMM of the missing exon to identify the best candidate. This feature allows for the identification of short exons often missed by purely homology-based pipelines. Application of the HAP.py-ABCENTH pipeline to previously published ant genomes showed that on average it achieved over 98% recall and over 95% precision at the complete gene level (meaning only perfectly predicted genes counted as true positives) when compared with manual annotations.
 
-# Header 1
-## Header 2
-### Header 3
+In order to generate a set of perfectly annotated genes to benchmark HAP.py-ABCENTH, as well as to serve as a resource for development of other gene prediction tools for ant genomes, I sequenced several million full length transcripts from five species of ants using poly-A primed mRNA reverse transcription with cap-dependent second-strand synthesis followed by Oxford Nanopore long read sequencing. Reads were QCed, filtered, clustered, and polished using the PyChopper, Pinfish, and TALC software, yielding approximately 300,000 unique cleaned transcripts for each species. Transdecoder analysis and clustering into genes based on overlapping coding sequences showed that the transcripts came from between 8,600 and 9,600 genes per species. Full length transcripts of chemosensory genes matched the gene structure predicted from reference annotations in over two dozen manually inspected cases. Preliminary evaluation of genome wide gene prediction based on training with conserved genes identified through this pipeline suggested that these models may be very useful for high throughput gene prediction training.
 
-- Bulleted
-- List
+## Expected final results and their potential impact and use (including the socio-economic impact and the wider societal implications of the project so far)
+With the HAP.py-ABCENTH pipeline now developed and benchmarked, it is ready to be deployed on the hundreds of ant genomes that will be sequenced for the Global Ant Genomics Alliance (GAGA) project. This will yield unprecedented insight into the evolution of rapidly evolving, ethologically relevant gene families like the ant odorant receptor and gustatory receptor gene families. The ant odorant receptor gene family in particular has become an incredible model for studies of receptor functional evolution (see Pask et al. 2017; DOI: 10.1038/s41467-017-00099-1), genomic evolution (see McKenzie and Kronauer 2018; DOI: 10.1101/gr.237123.118), and the role of receptor genes in nervous system evolutionary development (see Ryba et al. 2020; DOI: 10.1016/j.cub.2020.05.072).
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/biorover/EDIOS_project/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+The annotation of tens of thousands of these genes in hundreds of genomes will advance all of the aforementioned fields significantly, and pave the way for new studies such as studies of protein structure-function evolution. Meanwhile, our full-length sequences of hundreds of thousands of unique transcripts from tens of thousands of genes across five ant species will be invaluable for efforts to build pipelines to predict genes in the hundreds of new ant genomes soon to be published by GAGA. These results by themselves already show that there is unforeseen isoform diversity in ant transcriptional landscapes that can be revealed by full-length transcript sequencing. These findings help to advance our understanding of how complex social phenotypes are encoded at the genetic level.
