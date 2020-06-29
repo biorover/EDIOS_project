@@ -1,4 +1,4 @@
-
+![alt tag](https://github.com/biorover/EDIOS_project/blob/master/EU_emblem_H2020_vertical_big_blue-300x254.png) 
 This project has recieved funding from the European Union's Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No 797969
 
 ## Summary description of the project objectives
